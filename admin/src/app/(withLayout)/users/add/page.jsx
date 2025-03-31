@@ -1,7 +1,9 @@
+import AddUser from "@/screens/users/add";
+
 export default function AddUsers(){
     return(
         <div>
-            <h1>This is the add user Page</h1>
+            <h1> <AddUser/> </h1>
         </div>
     )
 }
