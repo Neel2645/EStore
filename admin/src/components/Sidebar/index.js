@@ -38,7 +38,7 @@ export default function Sidebar() {
                 <Image
                 height={50}
                 width={50}
-                src="/user.svg"
+                src="./user.svg"
                 alt="User Avatar"
                 radius="sm"
                 className="border-gray-600 rounded-full border-2"
