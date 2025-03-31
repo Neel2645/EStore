@@ -1,14 +1,27 @@
+import { createUser } from "@/actions/userActions";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
 
-export default function AddUser(){
 
+export default async function AddUser({searchParams}){
+
+    const {errorMessage} = await searchParams;
     return(
         <div>
             <h1 className="text-3xl font-semibold p-2"> Add User </h1>
 
-            <form className="grid gap-x-6 gap-y-10 mt-10 grid-cols-2 px-2">
+            <form 
+                className="grid gap-x-6 gap-y-10 mt-10 grid-cols-2 px-2"
+                action={createUser}
+            >
+                {
+                    errorMessage && (
+                        <div className="col-span-2 border border-red-500 rounded-xl px-5 py-3 bg-red-50 w-fit">
+                            <span className="text-red-500 col-span-2 text-mg my-0 font-500">{errorMessage}</span>
+                        </div>
+                    )
+                }
                 <div className="grid gap-2">
                     <Label required={true}>Username</Label>
                     <Input placeholder="Enter Username" name="userName"/>

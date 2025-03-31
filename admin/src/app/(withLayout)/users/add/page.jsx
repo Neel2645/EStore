@@ -1,9 +1,9 @@
 import AddUser from "@/screens/users/add";
 
-export default function AddUsers(){
+export default function AddUsers({searchParams}){
     return(
         <div>
-            <h1> <AddUser/> </h1>
+            <h1> <AddUser searchParams={searchParams}/> </h1>
         </div>
     )
 }

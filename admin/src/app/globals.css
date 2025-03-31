@@ -26,7 +26,7 @@
   }
   .custom-table th,
   .custom-table td {
-    @apply px-6 py-2 text-start;
+    @apply px-6 py-2 text-center;
   }
   .custom-table tr {
     @apply border-b border-gray-300;
