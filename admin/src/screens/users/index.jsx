@@ -54,7 +54,7 @@ export default function UsersScreen({ users }) {
                     <EditIcon />
                   </Link>
                   <Button
-                    className="bg-transparent cursor-pointer p-0 px-2 border-none text-red-500"
+                    className="bg-transparent cursor-pointer p-0 pt-2 px-2 border-none text-red-500 shadow-none"
                     onClick={() =>{ 
                       setIsDeleteModalOpen(true)
                       setSelectedId(user.id)

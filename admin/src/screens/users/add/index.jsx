@@ -4,9 +4,8 @@ import { Input } from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
 
 
-export default async function AddUser({searchParams}){
+export default function AddUser({errorMessage}){
 
-    const {errorMessage} = await searchParams;
     return(
         <div>
             <h1 className="text-3xl font-semibold p-2"> Add User </h1>

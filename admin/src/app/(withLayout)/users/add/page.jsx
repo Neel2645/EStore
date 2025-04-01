@@ -1,9 +1,10 @@
 import AddUser from "@/screens/users/add";
 
-export default function AddUsers({searchParams}){
+export default async function AddUsers({searchParams}){
+    const {errorMessage} = await searchParams;
     return(
         <div>
-            <h1> <AddUser searchParams={searchParams}/> </h1>
+            <h1> <AddUser errorMessage={errorMessage}/> </h1>
         </div>
     )
 }

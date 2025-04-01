@@ -1,8 +1,9 @@
 import AddProductTypes from "@/screens/product-type/add"
 
-const AddProductTypePage = ({searchParams}) => {
+const AddProductTypePage = async ({searchParams}) => {
+    const {errorMessage} = await searchParams;
   return (
-    <AddProductTypes searchParams={searchParams} />
+    <AddProductTypes errorMessage={errorMessage} />
   )
 }
 

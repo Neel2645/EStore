@@ -5,17 +5,16 @@ import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
 import Link from "next/link";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
-import { deleteProductType } from "@/actions/productTypesAction";
 
 const ProductTypes = ({ productTypes }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
-  const handleDelete = async () => {
-    await deleteProductType(selectedId);
-    setIsDeleteModalOpen(false);
-    setSelectedId(null);
-  };
+//   const handleDelete = async () => {
+//     await deleteProductType(selectedId);
+//     setIsDeleteModalOpen(false);
+//     setSelectedId(null);
+//   };
 
   return (
     <div>
@@ -47,7 +46,7 @@ const ProductTypes = ({ productTypes }) => {
               <tr key={productType.id}>
                 <td>{key + 1}</td>
                 <td>{productType.name}</td>
-                <td className="flex items-center gap-x-3">
+                <td className="flex items-center justify-center gap-x-3">
                   <Link
                     href={`/product-type/edit/${productType.id}`}
                     className="w-fit"
@@ -55,7 +54,7 @@ const ProductTypes = ({ productTypes }) => {
                     <EditIcon />
                   </Link>
                   <Button
-                    className="bg-transparent p-0 px-2 border-none text-red-500"
+                    className="bg-transparent cursor-pointer p-0 pt-2 px-2 border-none text-red-500 shadow-none"
                     onClick={() => {
                       setIsDeleteModalOpen(true);
                       setSelectedId(productType.id);
