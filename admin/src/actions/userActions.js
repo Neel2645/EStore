@@ -46,10 +46,45 @@ export const getUsers = async () => {
 }
 
 export const getUniqueUser = async (userId) => {
+    if (!userId || isNaN(userId)) return null; 
+
+    // console.log(userId);
+
     const user = await db.adminUser.findUnique({
-        where : {
-            id : userId,
+        where: { id: userId }
+    });
+
+    return user || null; 
+};
+
+
+export const updateUser = async (formData, userId)=>{
+    // console.log(userId);
+    
+    const data = {
+        userName : formData.get("userName"),
+        userType : formData.get("userType"),
+        password : formData.get("password"),
+        confirmPassword : formData.get("confirmPassword")
+    };
+
+    let hashedPassword;
+    if(data.password){
+        const salt = bcrypt.genSaltSync(5);
+        hashedPassword = await bcrypt.hash(formData.get("password"), salt);
+    }
+
+    await db.adminUser.update({
+        where:{
+            id : parseInt(userId)
+        },
+        data : {
+            userType : data.userType,
+            userName : data.userName,
+            ...(data.password && { password: hashedPassword })
         }
     })
-    return user;
+
+    revalidatePath("/users", "page");
+    redirect("/users");
 }
