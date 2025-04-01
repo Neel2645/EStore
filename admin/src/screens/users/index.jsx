@@ -1,15 +1,21 @@
 "use client";
 
-import { deleteUser, getUsers } from "@/actions/userActions";
+import { deleteUser } from "@/actions/userActions";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
+import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
 import Link from "next/link";
+import { useState } from "react";
 
-export default  function UsersScreen({users}) {
+export default function UsersScreen({ users }) {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedId,setSelectedId] = useState();
 
-  const handleDelete = async (selectedId) => {
-     await deleteUser(selectedId);
-  }
+  const handleDelete = async () => {
+    await deleteUser(selectedId);
+    setIsDeleteModalOpen(false);
+    setSelectedId(null);
+  };
 
   return (
     <div>
@@ -26,7 +32,6 @@ export default  function UsersScreen({users}) {
 
       <div className="mt-20">
         <table className="custom-table">
-
           <thead className="border-y-2 border-gray-400">
             <tr>
               <th> Sr. No.</th>
@@ -36,36 +41,43 @@ export default  function UsersScreen({users}) {
           </thead>
 
           <tbody className="text-gray-700 font-medium text-lg text-center">
-            {
-            users.map((user, key) => (
+            {users.map((user, key) => (
               <tr key={user.id}>
                 <td>{key + 1}</td>
                 <td>{user.userName}</td>
                 <td className="flex items-center  justify-center gap-x-3">
-                  <Link href={`/users/edit/${user.id}`} className="
-                  w-fit">
+                  <Link
+                    href={`/users/edit/${user.id}`}
+                    className="
+                  w-fit"
+                  >
                     <EditIcon />
                   </Link>
-                  <Button className="bg-transparent cursor-pointer p-0 px-2 border-none text-red-500"
-                  onClick={() => handleDelete(user.id)}
+                  <Button
+                    className="bg-transparent cursor-pointer p-0 px-2 border-none text-red-500"
+                    onClick={() =>{ 
+                      setIsDeleteModalOpen(true)
+                      setSelectedId(user.id)
+                    }}
                   >
                     <DeleteIcon />
                   </Button>
                 </td>
               </tr>
-            ))
-            }
+            ))}
           </tbody>
         </table>
 
-        {/* {
-        isDeleteModalOpen && (
+        {
+          isDeleteModalOpen && (
           <DeleteConfirmationModal
             setIsOpen={setIsDeleteModalOpen}
             onCancel={() => setIsDeleteModalOpen(false)}
             handleConfirm={handleDelete}
           />
-        )} */}
+          )
+        }
+
       </div>
     </div>
   );
