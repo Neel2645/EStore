@@ -1,11 +1,15 @@
-// "use client";
-import { getUsers } from "@/actions/userActions";
+"use client";
+
+import { deleteUser, getUsers } from "@/actions/userActions";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
-export default async function UsersScreen() {
-  const users = await getUsers();
+export default  function UsersScreen({users}) {
+
+  const handleDelete = async (selectedId) => {
+     await deleteUser(selectedId);
+  }
 
   return (
     <div>
@@ -42,7 +46,9 @@ export default async function UsersScreen() {
                   w-fit">
                     <EditIcon />
                   </Link>
-                  <Button className="bg-transparent cursor-pointer p-0 px-2 border-none text-red-500">
+                  <Button className="bg-transparent cursor-pointer p-0 px-2 border-none text-red-500"
+                  onClick={() => handleDelete(user.id)}
+                  >
                     <DeleteIcon />
                   </Button>
                 </td>

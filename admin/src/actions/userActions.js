@@ -88,3 +88,13 @@ export const updateUser = async (formData, userId)=>{
     revalidatePath("/users", "page");
     redirect("/users");
 }
+
+export async function deleteUser(userId){
+    await db.adminUser.delete({
+        where : {
+            id : userId
+        }
+    });
+
+    revalidatePath("/users","page");
+}
