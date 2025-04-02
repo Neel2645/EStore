@@ -33,3 +33,31 @@ export async function getProductTypes(){
     const productTypes = await db.productType.findMany();
     return productTypes;
 }
+
+export async function getUniqueProductType(productTypeId){
+    const productType = await db.productType.findUnique({
+        where : {
+            id : parseInt(productTypeId),
+        }
+    });
+
+    return productType;
+}
+
+export async function updateProductType(formData,productTypeId)
+{
+    const data = {
+        name : formData.get("name")
+    }
+    await db.productType.update({
+        where : {
+            id : parseInt(productTypeId)
+        },
+        data : {
+            name : data.name
+        }
+    });
+
+    revalidatePath("/product-type","page");
+    redirect("/product-type")
+}
