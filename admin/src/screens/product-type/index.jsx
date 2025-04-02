@@ -5,16 +5,17 @@ import DeleteConfirmationModal from "@/components/ui/DeleteConfirmationModal";
 import Link from "next/link";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
+import { deleteProductType } from "@/actions/productTypesAction";
 
 const ProductTypes = ({ productTypes }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState();
 
-//   const handleDelete = async () => {
-//     await deleteProductType(selectedId);
-//     setIsDeleteModalOpen(false);
-//     setSelectedId(null);
-//   };
+  const handleDelete = async () => {
+    await deleteProductType(selectedId);
+    setIsDeleteModalOpen(false);
+    setSelectedId(null);
+  };
 
   return (
     <div>

@@ -61,3 +61,13 @@ export async function updateProductType(formData,productTypeId)
     revalidatePath("/product-type","page");
     redirect("/product-type")
 }
+
+export async function deleteProductType(productTypeId){
+    await db.productType.delete({
+        where : {
+            id : parseInt(productTypeId)
+        }
+    });
+
+    revalidatePath("/product-type","page");
+}
