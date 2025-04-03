@@ -2,7 +2,7 @@
 
 @layer components {
   .sidebar-main {
-    @apply top-0 left-0 h-screen w-64 flex flex-col shadow-xl rounded-e-lg text-gray-800 border border-gray-200;
+    @apply top-0 left-0 h-screen w-64 flex flex-col shadow-xl rounded-e-lg text-gray-800 border border-gray-200 sticky; 
   }
 
   .sidebar-list-item {

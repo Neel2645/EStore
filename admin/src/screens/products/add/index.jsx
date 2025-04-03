@@ -1,11 +1,13 @@
+"use client"
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import Label from "@/components/ui/Label";
 import Switch from "@/components/ui/Switch";
 import CustomFileInput from "@/components/ui/CustomFileInput";
-import { createProduct } from "@/actions/ProductActions";
+import { createProduct } from "@/actions/productAction";
 
 const AddProducts = ({ errorMessage, productTypes }) => {
+
   return (
     <div>
       <h1 className="text-3xl font-semibold p-2"> Add Product </h1>

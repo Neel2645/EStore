@@ -1,3 +1,4 @@
+"use server"
 import AddProducts from "@/screens/products/add";
 import { getProductTypes } from "@/actions/productTypesAction";
 

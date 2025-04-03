@@ -6,14 +6,14 @@ import Image from "next/image";
 import { DeleteIcon, EditIcon } from "@/components/icons";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
-import { deleteProduct } from "@/actions/ProductActions";
+// import { deleteProduct } from "@/actions/ProductActions";
 
 const Products = ({ products }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectProduct, setSelectedProduct] = useState();
 
   const handleDelete = async () => {
-    await deleteProduct(selectProduct);
+    // await deleteProduct(selectProduct);
     setIsDeleteModalOpen(false);
     setSelectedProduct(null);
   };
